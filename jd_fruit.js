@@ -1264,7 +1264,7 @@ function readShareCode() {
         resolve(data);
       }
     })
-    await $.wait(10000);
+    await $.wait(1000);
     resolve()
   })
 }
@@ -1281,11 +1281,14 @@ function shareCodesFormat() {
     }
     const readShareCodeRes = await readShareCode();
      
-    if (readShareCodeRes && readShareCodeRes.code === 200) {
-      // newShareCodes = newShareCodes.concat(readShareCodeRes.data || []);
-      newShareCodes = [...new Set([...newShareCodes, ...(readShareCodeRes.data || [])])];
+if (readShareCodeRes && readShareCodeRes.code === 200) {
+
+
+
+$.newShareCodes =getRandomArr(getArrRandomly(readShareCodeRes.data),randomCount)
+
     }
-    console.log(`第${$.index}个京东账号将要助力的好友${JSON.stringify(newShareCodes)}`)
+    console.log(`第${$.index}个京东账号将要助力的好友${$.newShareCodes}`)
     resolve();
   })
 }
